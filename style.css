@@ -1,0 +1,362 @@
+﻿/* ============================================================
+   style.css – Kawaii Ink | Bubble Graffiti Aesthetic
+   ============================================================ */
+
+/* ---- Global Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background-color: #0F0F1A;
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+header nav {
+  box-shadow: 0 0 30px rgba(255, 42, 133, 0.08),
+              0 2px 15px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+header nav:hover {
+  box-shadow: 0 0 40px rgba(255, 42, 133, 0.18),
+              0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Navbar scroll shrink */
+header.scrolled nav {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* ============================================================
+   HERO SECTION – Blobs decorativos
+   ============================================================ */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+  animation: blobDrift 8s ease-in-out infinite alternate;
+}
+
+.blob-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, #FF2A85, transparent 70%);
+  top: -80px;
+  left: -100px;
+  animation-duration: 9s;
+}
+
+.blob-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #8A2BE2, transparent 70%);
+  top: 50%;
+  right: -80px;
+  animation-duration: 11s;
+  animation-delay: -3s;
+}
+
+.blob-3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #FF6EC7, transparent 70%);
+  bottom: 80px;
+  left: 30%;
+  animation-duration: 7s;
+  animation-delay: -5s;
+}
+
+@keyframes blobDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(20px, -15px) scale(1.05); }
+  66%  { transform: translate(-15px, 20px) scale(0.98); }
+  100% { transform: translate(10px, 10px) scale(1.03); }
+}
+
+/* Hero text shimmer (Tailwind bg-[length] + animation) */
+.hero-title span {
+  display: block;
+  background-size: 200% auto;
+}
+
+/* CTA button glow */
+.btn-neon {
+  box-shadow: 0 0 15px rgba(255, 42, 133, 0.5),
+              0 0 40px rgba(138, 43, 226, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.btn-neon:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-neon:hover {
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.7),
+              0 0 60px rgba(138, 43, 226, 0.5);
+}
+
+/* ============================================================
+   GALLERY CARDS – Contenedores nube
+   ============================================================ */
+.gallery-card {
+  transition: transform 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Subtle scan line on hover */
+.gallery-card .rounded-\[3rem\] {
+  position: relative;
+}
+
+/* Ensure gallery overlay works correctly */
+.gallery-card > div {
+  position: relative;
+}
+
+/* Gallery image placeholder (for missing images) */
+.gallery-card img[src="img/tattoo1.jpg"],
+.gallery-card img[src="img/tattoo2.jpg"],
+.gallery-card img[src="img/tattoo3.jpg"],
+.gallery-card img[src="img/tattoo4.jpg"] {
+  background-color: #1a1a2e;
+}
+
+/* Placeholder fallback styling */
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+  color: rgba(255,255,255,0.3);
+  font-family: 'Rubik Bubbles', cursive;
+  font-size: 1rem;
+}
+
+/* ============================================================
+   HIGIENE SECTION – Spray / Graffiti Cloud Background
+   ============================================================ */
+.spray-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 40%, rgba(255, 42, 133, 0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 85% 30%, rgba(138, 43, 226, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 50% 80%, rgba(255, 110, 199, 0.05) 0%, transparent 65%);
+}
+
+/* Organic cloud blob shape behind the section */
+.spray-bg::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  top: 10%;
+  left: 15%;
+  background: rgba(138, 43, 226, 0.03);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  border: 1px solid rgba(138, 43, 226, 0.06);
+  filter: blur(2px);
+}
+
+.spray-bg::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 60%;
+  top: 20%;
+  right: 5%;
+  background: rgba(255, 42, 133, 0.025);
+  border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
+  border: 1px solid rgba(255, 42, 133, 0.05);
+  filter: blur(3px);
+}
+
+/* Care cards */
+.care-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.care-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ============================================================
+   FOOTER – Curva superior
+   ============================================================ */
+footer {
+  position: relative;
+}
+
+.footer-wave-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #0F0F1A; /* matches body bg */
+  clip-path: ellipse(55% 100% at 50% 0%);
+}
+
+/* Footer neon glow line */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 42, 133, 0.4),
+    rgba(138, 43, 226, 0.4),
+    transparent
+  );
+}
+
+/* Social icon hover glow */
+footer a[aria-label] {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+footer a[aria-label]:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+a[aria-label="Reserva por WhatsApp"] {
+  box-shadow:
+    0 4px 20px rgba(37, 211, 102, 0.4),
+    0 0 40px rgba(37, 211, 102, 0.2);
+}
+
+a[aria-label="Reserva por WhatsApp"]:hover {
+  box-shadow:
+    0 6px 30px rgba(37, 211, 102, 0.6),
+    0 0 60px rgba(37, 211, 102, 0.3);
+}
+
+/* ============================================================
+   SCROLL REVEAL – Intersection Observer classes
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger delays for grid items */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ============================================================
+   UTILITY – Custom scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F0F1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF2A85, #8A2BE2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF6EC7, #B44DFF);
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 640px) {
+  .blob-1 { width: 280px; height: 280px; }
+  .blob-2 { width: 220px; height: 220px; }
+  .blob-3 { width: 180px; height: 180px; }
+
+  .care-card {
+    padding: 1.25rem;
+  }
+}
+
+/* ============================================================
+   SELECTION COLOR
+   ============================================================ */
+::selection {
+  background: rgba(255, 42, 133, 0.3);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: rgba(255, 42, 133, 0.3);
+  color: #fff;
+}
